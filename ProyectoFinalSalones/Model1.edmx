@@ -5,6 +5,16 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="DS2_ProyectoFinalSalonesDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Imagen" Type="nchar" MaxLength="10" />
+        </EntityType>
         <EntityType Name="Propietario">
           <Key>
             <PropertyRef Name="Id" />
@@ -29,14 +39,22 @@
           <Property Name="Descripcion" Type="varchar" MaxLength="200" />
           <Property Name="Imagen" Type="varchar" MaxLength="260" />
           <Property Name="Propietario_Id" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="InicioAlquilerActual" Type="datetime" />
+          <Property Name="FinAlquilerActual" Type="datetime" />
+          <Property Name="Cliente_Id" Type="nvarchar" MaxLength="450" />
         </EntityType>
-        <EntityType Name="Tipo">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="nvarchar" MaxLength="450" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
-        </EntityType>
+        <Association Name="FK_Salones_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Salones" Type="Self.Salones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Salones">
+              <PropertyRef Name="Cliente_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Salones_Propietario">
           <End Role="Propietario" Type="Self.Propietario" Multiplicity="1" />
           <End Role="Salones" Type="Self.Salones" Multiplicity="*" />
@@ -49,28 +67,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Salones_Tipo">
-          <End Role="Tipo" Type="Self.Tipo" Multiplicity="1" />
-          <End Role="Salones" Type="Self.Salones" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tipo">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Salones">
-              <PropertyRef Name="Tipo_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="DS2_ProyectoFinalSalonesDBModelStoreContainer">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="db" store:Type="Tables" />
           <EntitySet Name="Propietario" EntityType="Self.Propietario" Schema="db" store:Type="Tables" />
           <EntitySet Name="Salones" EntityType="Self.Salones" Schema="db" store:Type="Tables" />
-          <EntitySet Name="Tipo" EntityType="Self.Tipo" Schema="db" store:Type="Tables" />
-          <AssociationSet Name="FK_Salones_Propietario" Association="Self.FK_Salones_Propietario">
-            <End Role="Propietario" EntitySet="Propietario" />
+          <AssociationSet Name="FK_Salones_Cliente" Association="Self.FK_Salones_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
             <End Role="Salones" EntitySet="Salones" />
           </AssociationSet>
-          <AssociationSet Name="FK_Salones_Tipo" Association="Self.FK_Salones_Tipo">
-            <End Role="Tipo" EntitySet="Tipo" />
+          <AssociationSet Name="FK_Salones_Propietario" Association="Self.FK_Salones_Propietario">
+            <End Role="Propietario" EntitySet="Propietario" />
             <End Role="Salones" EntitySet="Salones" />
           </AssociationSet>
         </EntityContainer>
@@ -79,6 +85,17 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DS2_ProyectoFinalSalonesDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Imagen" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Salones" Relationship="Self.FK_Salones_Cliente" FromRole="Cliente" ToRole="Salones" />
+        </EntityType>
         <EntityType Name="Propietario">
           <Key>
             <PropertyRef Name="Id" />
@@ -104,17 +121,24 @@
           <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Imagen" Type="String" MaxLength="260" FixedLength="false" Unicode="false" />
           <Property Name="Propietario_Id" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="InicioAlquilerActual" Type="DateTime" Precision="3" />
+          <Property Name="FinAlquilerActual" Type="DateTime" Precision="3" />
+          <Property Name="Cliente_Id" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_Salones_Cliente" FromRole="Salones" ToRole="Cliente" />
           <NavigationProperty Name="Propietario" Relationship="Self.FK_Salones_Propietario" FromRole="Salones" ToRole="Propietario" />
-          <NavigationProperty Name="Tipo" Relationship="Self.FK_Salones_Tipo" FromRole="Salones" ToRole="Tipo" />
         </EntityType>
-        <EntityType Name="Tipo">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Salones" Relationship="Self.FK_Salones_Tipo" FromRole="Tipo" ToRole="Salones" />
-        </EntityType>
+        <Association Name="FK_Salones_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Salones" Type="Self.Salone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Salones">
+              <PropertyRef Name="Cliente_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Salones_Propietario">
           <End Role="Propietario" Type="Self.Propietario" Multiplicity="1" />
           <End Role="Salones" Type="Self.Salone" Multiplicity="*" />
@@ -127,28 +151,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Salones_Tipo">
-          <End Role="Tipo" Type="Self.Tipo" Multiplicity="1" />
-          <End Role="Salones" Type="Self.Salone" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tipo">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Salones">
-              <PropertyRef Name="Tipo_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="DS2_ProyectoFinalSalonesDBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DS2_ProyectoFinalSalonesDBEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clientes" EntityType="Self.Cliente" />
           <EntitySet Name="Propietarios" EntityType="Self.Propietario" />
           <EntitySet Name="Salones" EntityType="Self.Salone" />
-          <EntitySet Name="Tipoes" EntityType="Self.Tipo" />
-          <AssociationSet Name="FK_Salones_Propietario" Association="Self.FK_Salones_Propietario">
-            <End Role="Propietario" EntitySet="Propietarios" />
+          <AssociationSet Name="FK_Salones_Cliente" Association="Self.FK_Salones_Cliente">
+            <End Role="Cliente" EntitySet="Clientes" />
             <End Role="Salones" EntitySet="Salones" />
           </AssociationSet>
-          <AssociationSet Name="FK_Salones_Tipo" Association="Self.FK_Salones_Tipo">
-            <End Role="Tipo" EntitySet="Tipoes" />
+          <AssociationSet Name="FK_Salones_Propietario" Association="Self.FK_Salones_Propietario">
+            <End Role="Propietario" EntitySet="Propietarios" />
             <End Role="Salones" EntitySet="Salones" />
           </AssociationSet>
         </EntityContainer>
@@ -157,7 +169,18 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DS2_ProyectoFinalSalonesDBModelStoreContainer" CdmEntityContainer="DS2_ProyectoFinalSalonesDBEntities">
+        <EntityContainerMapping StorageEntityContainer="DS2_ProyectoFinalSalonesDBModelStoreContainer" CdmEntityContainer="DS2_ProyectoFinalSalonesDBEntities2">
+          <EntitySetMapping Name="Clientes">
+            <EntityTypeMapping TypeName="DS2_ProyectoFinalSalonesDBModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Propietarios">
             <EntityTypeMapping TypeName="DS2_ProyectoFinalSalonesDBModel.Propietario">
               <MappingFragment StoreEntitySet="Propietario">
@@ -182,14 +205,9 @@
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Imagen" ColumnName="Imagen" />
                 <ScalarProperty Name="Propietario_Id" ColumnName="Propietario_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Tipoes">
-            <EntityTypeMapping TypeName="DS2_ProyectoFinalSalonesDBModel.Tipo">
-              <MappingFragment StoreEntitySet="Tipo">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="InicioAlquilerActual" ColumnName="InicioAlquilerActual" />
+                <ScalarProperty Name="FinAlquilerActual" ColumnName="FinAlquilerActual" />
+                <ScalarProperty Name="Cliente_Id" ColumnName="Cliente_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -24,6 +24,9 @@
             @Html.DisplayNameFor(model => model.Precio)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Tipo_Id)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Disponibilidad)
         </th>
         <th>
@@ -33,10 +36,16 @@
             @Html.DisplayNameFor(model => model.Imagen)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Propietario.Nombre)
+            @Html.DisplayNameFor(model => model.InicioAlquilerActual)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Tipo.Nombre)
+            @Html.DisplayNameFor(model => model.FinAlquilerActual)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cliente.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Propietario.Nombre)
         </th>
         <th></th>
     </tr>
@@ -56,6 +65,9 @@
             @Html.DisplayFor(modelItem => item.Precio)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Tipo_Id)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Disponibilidad)
         </td>
         <td>
@@ -65,10 +77,16 @@
             @Html.DisplayFor(modelItem => item.Imagen)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Propietario.Nombre)
+            @Html.DisplayFor(modelItem => item.InicioAlquilerActual)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Tipo.Nombre)
+            @Html.DisplayFor(modelItem => item.FinAlquilerActual)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cliente.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Propietario.Nombre)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

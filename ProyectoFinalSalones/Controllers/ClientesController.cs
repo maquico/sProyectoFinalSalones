@@ -10,116 +10,107 @@ using ProyectoFinalSalones;
 
 namespace ProyectoFinalSalones.Controllers
 {
-    public class SalonesController : Controller
+    public class ClientesController : Controller
     {
         private DS2_ProyectoFinalSalonesDBEntities2 db = new DS2_ProyectoFinalSalonesDBEntities2();
 
-        // GET: Salones
+        // GET: Clientes
         public ActionResult Index()
         {
-            var salones = db.Salones.Include(s => s.Cliente).Include(s => s.Propietario);
-            return View(salones.ToList());
+            return View(db.Clientes.ToList());
         }
 
-        // GET: Salones/Details/5
+        // GET: Clientes/Details/5
         public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Salone salone = db.Salones.Find(id);
-            if (salone == null)
+            Cliente cliente = db.Clientes.Find(id);
+            if (cliente == null)
             {
                 return HttpNotFound();
             }
-            return View(salone);
+            return View(cliente);
         }
 
-        // GET: Salones/Create
+        // GET: Clientes/Create
         public ActionResult Create()
         {
-            ViewBag.Cliente_Id = new SelectList(db.Clientes, "Id", "Nombre");
-            ViewBag.Propietario_Id = new SelectList(db.Propietarios, "Id", "Nombre");
             return View();
         }
 
-        // POST: Salones/Create
+        // POST: Clientes/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nombre,Superficie,Direccion,Precio,Tipo_Id,Disponibilidad,Descripcion,Imagen,Propietario_Id,InicioAlquilerActual,FinAlquilerActual,Cliente_Id")] Salone salone)
+        public ActionResult Create([Bind(Include = "Id,Nombre,Telefono,Email,Imagen")] Cliente cliente)
         {
             if (ModelState.IsValid)
             {
-                db.Salones.Add(salone);
+                db.Clientes.Add(cliente);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Cliente_Id = new SelectList(db.Clientes, "Id", "Nombre", salone.Cliente_Id);
-            ViewBag.Propietario_Id = new SelectList(db.Propietarios, "Id", "Nombre", salone.Propietario_Id);
-            return View(salone);
+            return View(cliente);
         }
 
-        // GET: Salones/Edit/5
+        // GET: Clientes/Edit/5
         public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Salone salone = db.Salones.Find(id);
-            if (salone == null)
+            Cliente cliente = db.Clientes.Find(id);
+            if (cliente == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Cliente_Id = new SelectList(db.Clientes, "Id", "Nombre", salone.Cliente_Id);
-            ViewBag.Propietario_Id = new SelectList(db.Propietarios, "Id", "Nombre", salone.Propietario_Id);
-            return View(salone);
+            return View(cliente);
         }
 
-        // POST: Salones/Edit/5
+        // POST: Clientes/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nombre,Superficie,Direccion,Precio,Tipo_Id,Disponibilidad,Descripcion,Imagen,Propietario_Id,InicioAlquilerActual,FinAlquilerActual,Cliente_Id")] Salone salone)
+        public ActionResult Edit([Bind(Include = "Id,Nombre,Telefono,Email,Imagen")] Cliente cliente)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(salone).State = EntityState.Modified;
+                db.Entry(cliente).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Cliente_Id = new SelectList(db.Clientes, "Id", "Nombre", salone.Cliente_Id);
-            ViewBag.Propietario_Id = new SelectList(db.Propietarios, "Id", "Nombre", salone.Propietario_Id);
-            return View(salone);
+            return View(cliente);
         }
 
-        // GET: Salones/Delete/5
+        // GET: Clientes/Delete/5
         public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Salone salone = db.Salones.Find(id);
-            if (salone == null)
+            Cliente cliente = db.Clientes.Find(id);
+            if (cliente == null)
             {
                 return HttpNotFound();
             }
-            return View(salone);
+            return View(cliente);
         }
 
-        // POST: Salones/Delete/5
+        // POST: Clientes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Salone salone = db.Salones.Find(id);
-            db.Salones.Remove(salone);
+            Cliente cliente = db.Clientes.Find(id);
+            db.Clientes.Remove(cliente);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

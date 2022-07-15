@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a07af168c33c4e57a2c6870860e431a5" Name="Diagram1">
-        <EntityTypeShape EntityType="DS2_ProyectoFinalSalonesDBModel.Propietario" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+      <Diagram DiagramId="19f27d531de143f29f3427d6210d64a3" Name="Diagram1">
+        <EntityTypeShape EntityType="DS2_ProyectoFinalSalonesDBModel.Cliente" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DS2_ProyectoFinalSalonesDBModel.Propietario" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DS2_ProyectoFinalSalonesDBModel.Salone" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="DS2_ProyectoFinalSalonesDBModel.Tipo" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <AssociationConnector Association="DS2_ProyectoFinalSalonesDBModel.FK_Salones_Cliente" ManuallyRouted="false" />
         <AssociationConnector Association="DS2_ProyectoFinalSalonesDBModel.FK_Salones_Propietario" ManuallyRouted="false" />
-        <AssociationConnector Association="DS2_ProyectoFinalSalonesDBModel.FK_Salones_Tipo" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

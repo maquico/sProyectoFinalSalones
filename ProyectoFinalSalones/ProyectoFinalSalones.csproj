@@ -129,7 +129,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Cliente.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PropietariosController.cs" />
     <Compile Include="Controllers\SalonesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -156,9 +161,6 @@
     <Compile Include="Salone.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Tipo.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -171,8 +173,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
       <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -218,6 +220,16 @@
     <Content Include="Views\Salones\Details.cshtml" />
     <Content Include="Views\Salones\Edit.cshtml" />
     <Content Include="Views\Salones\Index.cshtml" />
+    <Content Include="Views\Propietarios\Create.cshtml" />
+    <Content Include="Views\Propietarios\Delete.cshtml" />
+    <Content Include="Views\Propietarios\Details.cshtml" />
+    <Content Include="Views\Propietarios\Edit.cshtml" />
+    <Content Include="Views\Propietarios\Index.cshtml" />
+    <Content Include="Views\Clientes\Create.cshtml" />
+    <Content Include="Views\Clientes\Delete.cshtml" />
+    <Content Include="Views\Clientes\Details.cshtml" />
+    <Content Include="Views\Clientes\Edit.cshtml" />
+    <Content Include="Views\Clientes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

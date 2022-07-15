@@ -12,16 +12,19 @@ namespace ProyectoFinalSalones
     using System;
     using System.Collections.Generic;
     
-    public partial class Tipo
+    public partial class Cliente
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Tipo()
+        public Cliente()
         {
             this.Salones = new HashSet<Salone>();
         }
     
         public string Id { get; set; }
         public string Nombre { get; set; }
+        public string Telefono { get; set; }
+        public string Email { get; set; }
+        public string Imagen { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Salone> Salones { get; set; }

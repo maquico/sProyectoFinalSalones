@@ -13,10 +13,10 @@ namespace ProyectoFinalSalones
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DS2_ProyectoFinalSalonesDBEntities : DbContext
+    public partial class DS2_ProyectoFinalSalonesDBEntities2 : DbContext
     {
-        public DS2_ProyectoFinalSalonesDBEntities()
-            : base("name=DS2_ProyectoFinalSalonesDBEntities")
+        public DS2_ProyectoFinalSalonesDBEntities2()
+            : base("name=DS2_ProyectoFinalSalonesDBEntities2")
         {
         }
     
@@ -25,8 +25,8 @@ namespace ProyectoFinalSalones
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Cliente> Clientes { get; set; }
         public virtual DbSet<Propietario> Propietarios { get; set; }
         public virtual DbSet<Salone> Salones { get; set; }
-        public virtual DbSet<Tipo> Tipoes { get; set; }
     }
 }

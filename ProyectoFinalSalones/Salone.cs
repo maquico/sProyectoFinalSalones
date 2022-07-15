@@ -24,8 +24,11 @@ namespace ProyectoFinalSalones
         public string Descripcion { get; set; }
         public string Imagen { get; set; }
         public string Propietario_Id { get; set; }
+        public Nullable<System.DateTime> InicioAlquilerActual { get; set; }
+        public Nullable<System.DateTime> FinAlquilerActual { get; set; }
+        public string Cliente_Id { get; set; }
     
+        public virtual Cliente Cliente { get; set; }
         public virtual Propietario Propietario { get; set; }
-        public virtual Tipo Tipo { get; set; }
     }
 }
