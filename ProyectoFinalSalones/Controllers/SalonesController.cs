@@ -21,6 +21,12 @@ namespace ProyectoFinalSalones.Controllers
             return View(salones.ToList());
         }
 
+        public ActionResult Lista()
+        {
+            var salones = db.Salones.Include(s => s.Cliente).Include(s => s.Propietario);
+            return View(salones.ToList());
+        }
+
         // GET: Salones/Details/5
         public ActionResult Details(string id)
         {
@@ -80,6 +86,23 @@ namespace ProyectoFinalSalones.Controllers
             ViewBag.Propietario_Id = new SelectList(db.Propietarios, "Id", "Nombre", salone.Propietario_Id);
             return View(salone);
         }
+
+        public ActionResult Rentar(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Salone salone = db.Salones.Find(id);
+            if (salone == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.Cliente_Id = new SelectList(db.Clientes, "Id", "Nombre", salone.Cliente_Id);
+            ViewBag.Propietario_Id = new SelectList(db.Propietarios, "Id", "Nombre", salone.Propietario_Id);
+            return View(salone);
+        }
+
 
         // POST: Salones/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
