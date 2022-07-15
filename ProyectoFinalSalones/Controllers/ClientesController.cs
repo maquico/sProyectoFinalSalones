@@ -50,6 +50,8 @@ namespace ProyectoFinalSalones.Controllers
         {
             if (ModelState.IsValid)
             {
+                cliente.Id = Guid.NewGuid().ToString();
+
                 db.Clientes.Add(cliente);
                 db.SaveChanges();
                 return RedirectToAction("Index");
