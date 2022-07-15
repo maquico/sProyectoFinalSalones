@@ -46,10 +46,11 @@ namespace ProyectoFinalSalones.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nombre,Telefono,Email,Imagen")] Propietario propietario)
+        public ActionResult Create([Bind(Include = "Nombre,Telefono,Email,Imagen")] Propietario propietario)
         {
             if (ModelState.IsValid)
             {
+                propietario.Id=Guid.NewGuid().ToString();
                 db.Propietarios.Add(propietario);
                 db.SaveChanges();
                 return RedirectToAction("Index");
