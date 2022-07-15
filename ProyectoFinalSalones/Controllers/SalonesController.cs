@@ -49,10 +49,11 @@ namespace ProyectoFinalSalones.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nombre,Superficie,Direccion,Precio,Tipo_Id,Disponibilidad,Descripcion,Imagen,Propietario_Id,InicioAlquilerActual,FinAlquilerActual,Cliente_Id")] Salone salone)
+        public ActionResult Create([Bind(Include = "Nombre,Superficie,Direccion,Precio,Tipo_Id,Disponibilidad,Descripcion,Imagen,Propietario_Id,InicioAlquilerActual,FinAlquilerActual,Cliente_Id")] Salone salone)
         {
             if (ModelState.IsValid)
             {
+                salone.Id = Guid.NewGuid().ToString();
                 db.Salones.Add(salone);
                 db.SaveChanges();
                 return RedirectToAction("Index");
