@@ -49,7 +49,7 @@ namespace ProyectoFinalSalones.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Nombre,Superficie,Direccion,Precio,Tipo_Id,Disponibilidad,Descripcion,Imagen,Propietario_Id,InicioAlquilerActual,FinAlquilerActual,Cliente_Id")] Salone salone)
+        public ActionResult Create([Bind(Include = "Nombre,Superficie,Direccion,Precio,Disponibilidad,Descripcion,Imagen,Propietario_Id,InicioAlquilerActual,FinAlquilerActual,Cliente_Id")] Salone salone)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace ProyectoFinalSalones.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nombre,Superficie,Direccion,Precio,Tipo_Id,Disponibilidad,Descripcion,Imagen,Propietario_Id,InicioAlquilerActual,FinAlquilerActual,Cliente_Id")] Salone salone)
+        public ActionResult Edit([Bind(Include = "Id,Nombre,Superficie,Direccion,Precio,Disponibilidad,Descripcion,Imagen,Propietario_Id,InicioAlquilerActual,FinAlquilerActual,Cliente_Id")] Salone salone)
         {
             if (ModelState.IsValid)
             {

@@ -19,7 +19,6 @@ namespace ProyectoFinalSalones
         public int Superficie { get; set; }
         public string Direccion { get; set; }
         public decimal Precio { get; set; }
-        public string Tipo_Id { get; set; }
         public bool Disponibilidad { get; set; }
         public string Descripcion { get; set; }
         public string Imagen { get; set; }

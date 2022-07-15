@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DS2_ProyectoFinalSalonesDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DS2_ProyectoFinalSalonesDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cliente">
           <Key>
             <PropertyRef Name="Id" />
@@ -34,7 +34,6 @@
           <Property Name="Superficie" Type="int" Nullable="false" />
           <Property Name="Direccion" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Precio" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Tipo_Id" Type="nvarchar" MaxLength="450" Nullable="false" />
           <Property Name="Disponibilidad" Type="bit" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="200" />
           <Property Name="Imagen" Type="varchar" MaxLength="260" />
@@ -80,8 +79,7 @@
             <End Role="Salones" EntitySet="Salones" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DS2_ProyectoFinalSalonesDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -116,7 +114,6 @@
           <Property Name="Superficie" Type="Int32" Nullable="false" />
           <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Precio" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Tipo_Id" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Disponibilidad" Type="Boolean" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Imagen" Type="String" MaxLength="260" FixedLength="false" Unicode="false" />
@@ -200,7 +197,6 @@
                 <ScalarProperty Name="Superficie" ColumnName="Superficie" />
                 <ScalarProperty Name="Direccion" ColumnName="Direccion" />
                 <ScalarProperty Name="Precio" ColumnName="Precio" />
-                <ScalarProperty Name="Tipo_Id" ColumnName="Tipo_Id" />
                 <ScalarProperty Name="Disponibilidad" ColumnName="Disponibilidad" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Imagen" ColumnName="Imagen" />
