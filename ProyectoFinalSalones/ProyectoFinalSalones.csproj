@@ -181,6 +181,9 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="Public\Icons\cliente.png" />
+    <Content Include="Public\Icons\gerente.png" />
+    <Content Include="Public\Icons\Salon.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Model1.edmx">
