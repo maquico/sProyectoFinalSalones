@@ -21,7 +21,6 @@
         <div class="form-group">
             @Html.LabelFor(model => model.InicioAlquilerActual, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.InicioAlquilerActual, new { htmlAttributes = new { Type = "date", @class = "form-control" } })
                 @Html.EditorFor(model => model.InicioAlquilerActual, new { htmlAttributes = new {Type="datetime-local", @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.InicioAlquilerActual, "", new { @class = "text-danger" })
             </div>
