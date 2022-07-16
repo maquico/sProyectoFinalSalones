@@ -142,7 +142,22 @@ namespace ProyectoFinalSalones.Controllers
             return View(salone);
         }
 
-       
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Rentar([Bind(Include = "Id,Nombre,Superficie,Direccion,Precio,Disponibilidad,Descripcion,Imagen,Propietario_Id,InicioAlquilerActual,FinAlquilerActual,Cliente_Id")] Salone salone)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(salone).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Lista");
+            }
+
+            ViewBag.Cliente_Id = new SelectList(db.Clientes, "Id", "Nombre", salone.Cliente_Id);
+  
+            return View(salone);
+        }
+
 
         // GET: Salones/Delete/5
         public ActionResult Delete(string id)

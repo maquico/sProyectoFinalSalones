@@ -38,8 +38,8 @@
           <Property Name="Descripcion" Type="varchar" MaxLength="200" />
           <Property Name="Imagen" Type="varchar" MaxLength="260" />
           <Property Name="Propietario_Id" Type="nvarchar" MaxLength="450" Nullable="false" />
-          <Property Name="InicioAlquilerActual" Type="datetime" />
-          <Property Name="FinAlquilerActual" Type="datetime" />
+          <Property Name="InicioAlquilerActual" Type="date" />
+          <Property Name="FinAlquilerActual" Type="date" />
           <Property Name="Cliente_Id" Type="nvarchar" MaxLength="450" />
         </EntityType>
         <Association Name="FK_Salones_Cliente">
@@ -118,8 +118,8 @@
           <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Imagen" Type="String" MaxLength="260" FixedLength="false" Unicode="false" />
           <Property Name="Propietario_Id" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="InicioAlquilerActual" Type="DateTime" Precision="3" />
-          <Property Name="FinAlquilerActual" Type="DateTime" Precision="3" />
+          <Property Name="InicioAlquilerActual" Type="DateTime" Precision="0" />
+          <Property Name="FinAlquilerActual" Type="DateTime" Precision="0" />
           <Property Name="Cliente_Id" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Cliente" Relationship="Self.FK_Salones_Cliente" FromRole="Salones" ToRole="Cliente" />
           <NavigationProperty Name="Propietario" Relationship="Self.FK_Salones_Propietario" FromRole="Salones" ToRole="Propietario" />
