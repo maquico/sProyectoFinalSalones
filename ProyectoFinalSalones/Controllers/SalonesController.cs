@@ -55,11 +55,19 @@ namespace ProyectoFinalSalones.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Nombre,Superficie,Direccion,Precio,Disponibilidad,Descripcion,Imagen,Propietario_Id,InicioAlquilerActual,FinAlquilerActual,Cliente_Id")] Salone salone)
+        public ActionResult Create([Bind(Include = "Nombre,Superficie,Direccion,Precio,Disponibilidad,Descripcion,Imagen,Propietario_Id,InicioAlquilerActual,FinAlquilerActual,Cliente_Id")] Salone salone, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
                 salone.Id = Guid.NewGuid().ToString();
+                if (file != null)
+                {
+                    string imagenUrl = System.IO.Path.GetFileName(file.FileName);
+                    string pathUrl = System.IO.Path.Combine(Server.MapPath("/Public/Icons"), imagenUrl);
+                    file.SaveAs(pathUrl);
+
+                    salone.Imagen = imagenUrl;
+                }
                 db.Salones.Add(salone);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -84,6 +92,7 @@ namespace ProyectoFinalSalones.Controllers
             }
             ViewBag.Cliente_Id = new SelectList(db.Clientes, "Id", "Nombre", salone.Cliente_Id);
             ViewBag.Propietario_Id = new SelectList(db.Propietarios, "Id", "Nombre", salone.Propietario_Id);
+
             return View(salone);
         }
 
@@ -109,14 +118,23 @@ namespace ProyectoFinalSalones.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nombre,Superficie,Direccion,Precio,Disponibilidad,Descripcion,Imagen,Propietario_Id,InicioAlquilerActual,FinAlquilerActual,Cliente_Id")] Salone salone)
+        public ActionResult Edit([Bind(Include = "Id,Nombre,Superficie,Direccion,Precio,Disponibilidad,Descripcion,Imagen,Propietario_Id,InicioAlquilerActual,FinAlquilerActual,Cliente_Id")] Salone salone, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
+                if (file != null)
+                {
+                    string imagenUrl = System.IO.Path.GetFileName(file.FileName);
+                    string pathUrl = System.IO.Path.Combine(Server.MapPath("/Public/Icons"), imagenUrl);
+                    file.SaveAs(pathUrl);
+
+                    salone.Imagen = imagenUrl;
+                }
                 db.Entry(salone).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            
             ViewBag.Cliente_Id = new SelectList(db.Clientes, "Id", "Nombre", salone.Cliente_Id);
             ViewBag.Propietario_Id = new SelectList(db.Propietarios, "Id", "Nombre", salone.Propietario_Id);
             return View(salone);

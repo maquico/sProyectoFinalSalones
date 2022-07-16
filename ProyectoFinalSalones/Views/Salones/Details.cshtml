@@ -63,7 +63,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Imagen)
+            <img src="~/Public/Icons/@(String.IsNullOrEmpty(Model.Imagen) ? "Salon.png" : Model.Imagen)" style="height:75px; width:75px" />
         </dd>
 
         <dt>
