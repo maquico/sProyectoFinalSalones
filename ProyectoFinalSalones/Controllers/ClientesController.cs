@@ -87,10 +87,18 @@ namespace ProyectoFinalSalones.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nombre,Telefono,Email,Imagen")] Cliente cliente)
+        public ActionResult Edit([Bind(Include = "Id,Nombre,Telefono,Email,Imagen")] Cliente cliente, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
+                if (file != null)
+                {
+                    string imagenUrl = System.IO.Path.GetFileName(file.FileName);
+                    string pathUrl = System.IO.Path.Combine(Server.MapPath("/Public/Icons"), imagenUrl);
+                    file.SaveAs(pathUrl);
+
+                    cliente.Imagen = imagenUrl;
+                }
                 db.Entry(cliente).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -4,7 +4,7 @@
     ViewBag.Title = "Lista";
 }
 
-<h2>Lista</h2>
+<h2>Nuestros Salones</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,26 +12,15 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Imagen)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Superficie)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Direccion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Precio)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Disponibilidad)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Imagen)
-        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.InicioAlquilerActual)
         </th>
@@ -53,26 +42,16 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            <img src="~/Public/Icons/@(String.IsNullOrEmpty(item.Imagen) ? "Salon.png" : item.Imagen)" style="height:75px; width:75px" />
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Nombre)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Superficie)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Direccion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Precio)
-        </td>
+       
         <td>
             @Html.DisplayFor(modelItem => item.Disponibilidad)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Imagen)
-        </td>
+     
         <td>
             @Html.DisplayFor(modelItem => item.InicioAlquilerActual)
         </td>

@@ -30,14 +30,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Disponibilidad)
         </th>
+
         <th>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cliente.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Propietario.Nombre)
+            Propietario
         </th>
         <th></th>
     </tr>
@@ -64,13 +59,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Disponibilidad)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descripcion)
-        </td>
-
-        <td>
-            @Html.DisplayFor(modelItem => item.Cliente.Nombre)
-        </td>
+       
         <td>
             @Html.DisplayFor(modelItem => item.Propietario.Nombre)
         </td>

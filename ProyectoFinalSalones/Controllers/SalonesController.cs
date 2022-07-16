@@ -130,6 +130,8 @@ namespace ProyectoFinalSalones.Controllers
 
                     salone.Imagen = imagenUrl;
                 }
+                
+                
                 db.Entry(salone).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -139,6 +141,8 @@ namespace ProyectoFinalSalones.Controllers
             ViewBag.Propietario_Id = new SelectList(db.Propietarios, "Id", "Nombre", salone.Propietario_Id);
             return View(salone);
         }
+
+       
 
         // GET: Salones/Delete/5
         public ActionResult Delete(string id)
