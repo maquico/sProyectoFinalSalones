@@ -13,7 +13,7 @@
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Telefono" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Imagen" Type="nchar" MaxLength="10" />
+          <Property Name="Imagen" Type="varchar" MaxLength="260" />
         </EntityType>
         <EntityType Name="Propietario">
           <Key>
@@ -91,7 +91,7 @@
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Imagen" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Imagen" Type="String" MaxLength="260" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Salones" Relationship="Self.FK_Salones_Cliente" FromRole="Cliente" ToRole="Salones" />
         </EntityType>
         <EntityType Name="Propietario">
