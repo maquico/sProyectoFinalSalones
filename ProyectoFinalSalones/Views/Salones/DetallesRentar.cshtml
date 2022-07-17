@@ -1,0 +1,118 @@
+﻿@model ProyectoFinalSalones.Salone
+
+@{
+    ViewBag.Title = "Detalles del salón";
+}
+
+<h2>Detalles del salón</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Superficie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Superficie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Precio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Disponibilidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Disponibilidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Imagen)
+        </dt>
+
+        <dd>
+            <img src="~/Public/Icons/@(String.IsNullOrEmpty(Model.Imagen) ? "Salon.png" : Model.Imagen)" style="height:75px; width:75px" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InicioAlquilerActual)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InicioAlquilerActual)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FinAlquilerActual)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FinAlquilerActual)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Propietario.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Propietario.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+
+    @Html.ActionLink("Volver", "Lista")
+    @if (Model.Disponibilidad == true)
+    {
+        <p>
+            @Html.ActionLink("Rentar", "Rentar", new { id = Model.Id })
+        </p>
+    }
+    else
+    {
+        <p>
+            No disponible para renta
+        </p>
+    }
+
+</p>

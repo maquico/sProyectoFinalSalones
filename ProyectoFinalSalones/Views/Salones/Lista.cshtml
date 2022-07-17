@@ -67,22 +67,10 @@
         <td>
             @Html.DisplayFor(modelItem => item.Propietario.Nombre)
         </td>
-        @if (item.Disponibilidad == true)
-        {
-            <td>
-                @Html.ActionLink("Rentar", "Rentar", new { id = item.Id })
-            </td>
-        }
-        else
-        {
-            <td>
-                No disponible para renta
-            </td>
-        }
-
+      
         <td>
 
-            @Html.ActionLink("Detalles", "Details", new { id = item.Id })
+            @Html.ActionLink("Detalles", "DetallesRentar", new { id = item.Id })
 
         </td>
     </tr>

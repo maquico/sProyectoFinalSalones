@@ -45,6 +45,19 @@ namespace ProyectoFinalSalones.Controllers
             }
             return View(salone);
         }
+        public ActionResult DetallesRentar(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Salone salone = db.Salones.Find(id);
+            if (salone == null)
+            {
+                return HttpNotFound();
+            }
+            return View(salone);
+        }
 
         // GET: Salones/Create
         public ActionResult Create()
