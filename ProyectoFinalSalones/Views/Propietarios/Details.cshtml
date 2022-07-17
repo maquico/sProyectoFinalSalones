@@ -1,14 +1,13 @@
 ﻿@model ProyectoFinalSalones.Propietario
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles del propietario";
     
 }
 
-<h2>Details</h2>
+<h2>Detalles del propietario</h2>
 
 <div>
-    <h4>Propietario</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -46,6 +45,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Volver", "Index")
 </p>

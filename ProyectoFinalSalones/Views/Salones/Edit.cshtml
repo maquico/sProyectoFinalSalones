@@ -1,11 +1,11 @@
 ﻿@model ProyectoFinalSalones.Salone
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Modificación de un salón";
     
 }
 
-<h2>Edit</h2>
+<h2>Modificación de un salón</h2>
 
 
 @using (Html.BeginForm("Edit", "Salones", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -13,7 +13,6 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Salone</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
@@ -101,7 +100,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Volver", "Index")
 </div>
 
 @section Scripts {

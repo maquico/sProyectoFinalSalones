@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<ProyectoFinalSalones.Propietario>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Gestión de propietarios";
 }
 
-<h2>Index</h2>
+<h2>Gestión de propietarios</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Registra un nuevo propietario", "Create")
 </p>
 <table class="table">
     <tr>
@@ -43,9 +43,9 @@
         </td>
       
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Borrar", "Delete", new { id=item.Id })
         </td>
     </tr>
 }
