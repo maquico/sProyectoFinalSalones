@@ -144,6 +144,7 @@ namespace ProyectoFinalSalones.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public ActionResult Rentar([Bind(Include = "Id,Nombre,Superficie,Direccion,Precio,Disponibilidad,Descripcion,Imagen,Propietario_Id,InicioAlquilerActual,FinAlquilerActual,Cliente_Id")] Salone salone)
         {
             if (ModelState.IsValid)
@@ -154,7 +155,6 @@ namespace ProyectoFinalSalones.Controllers
             }
 
             ViewBag.Cliente_Id = new SelectList(db.Clientes, "Id", "Nombre", salone.Cliente_Id);
-  
             return View(salone);
         }
 
