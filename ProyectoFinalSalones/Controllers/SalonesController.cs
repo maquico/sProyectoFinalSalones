@@ -8,8 +8,12 @@ using System.Web;
 using System.Web.Mvc;
 using ProyectoFinalSalones;
 
+
+
+
 namespace ProyectoFinalSalones.Controllers
 {
+    
     public class SalonesController : Controller
     {
         private DS2_ProyectoFinalSalonesDBEntities2 db = new DS2_ProyectoFinalSalonesDBEntities2();
@@ -131,7 +135,6 @@ namespace ProyectoFinalSalones.Controllers
                     salone.Imagen = imagenUrl;
                 }
                 
-                
                 db.Entry(salone).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -145,19 +148,37 @@ namespace ProyectoFinalSalones.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Rentar([Bind(Include = "Id,Nombre,Superficie,Direccion,Precio,Disponibilidad,Descripcion,Imagen,Propietario_Id,InicioAlquilerActual,FinAlquilerActual,Cliente_Id")] Salone salone)
+        public ActionResult Rentar([Bind(Include = "Id,Nombre,Superficie,Direccion,Precio,Disponibilidad,Descripcion,Imagen,Propietario_Id,InicioAlquilerActual,FinAlquilerActual,Cliente_Id")] Salone salone, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(salone).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Lista");
+                
+                {
+                    if (file != null)
+                    {
+                        string imagenUrl = System.IO.Path.GetFileName(file.FileName);
+                        string pathUrl = System.IO.Path.Combine(Server.MapPath("/Public/Icons"), imagenUrl);
+                        file.SaveAs(pathUrl);
+
+                        salone.Imagen = imagenUrl;
+                    }
+
+                    db.Entry(salone).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Lista");
+                }
+               
+                    return View(salone);
+                
+               
             }
 
             ViewBag.Cliente_Id = new SelectList(db.Clientes, "Id", "Nombre", salone.Cliente_Id);
+            ViewBag.Propietario_Id = new SelectList(db.Propietarios, "Id", "Nombre", salone.Propietario_Id);
             return View(salone);
         }
-
+        
+       
 
         // GET: Salones/Delete/5
         public ActionResult Delete(string id)

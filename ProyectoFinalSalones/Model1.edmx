@@ -38,8 +38,8 @@
           <Property Name="Descripcion" Type="varchar" MaxLength="200" />
           <Property Name="Imagen" Type="varchar" MaxLength="260" />
           <Property Name="Propietario_Id" Type="nvarchar" MaxLength="450" Nullable="false" />
-          <Property Name="InicioAlquilerActual" Type="date" />
-          <Property Name="FinAlquilerActual" Type="date" />
+          <Property Name="InicioAlquilerActual" Type="smalldatetime" />
+          <Property Name="FinAlquilerActual" Type="smalldatetime" />
           <Property Name="Cliente_Id" Type="nvarchar" MaxLength="450" />
         </EntityType>
         <Association Name="FK_Salones_Cliente">
