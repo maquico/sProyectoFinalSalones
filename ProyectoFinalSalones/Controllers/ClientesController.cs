@@ -10,6 +10,7 @@ using ProyectoFinalSalones;
 
 namespace ProyectoFinalSalones.Controllers
 {
+
     public class ClientesController : Controller
     {
         private DS2_ProyectoFinalSalonesDBEntities3 db = new DS2_ProyectoFinalSalonesDBEntities3();
