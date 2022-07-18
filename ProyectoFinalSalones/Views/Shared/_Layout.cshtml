@@ -1,63 +1,129 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - SUPER SALONES</title>
 
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/Scripts/jquery-3.6.0.slim.min.js"></script>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    <style>
+        /* Estilos creados - Internal CSS */
+
+        :root {
+            --main-color: #f0b30f;
+        }
+
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .act {
+            color: var(--main-color) !important;
+            border-bottom: 2px solid var(--main-color);
+        }
+
+        .navbar ul li a:hover {
+            color: var(--main-color) !important;
+            border-bottom: 2px solid var(--main-color);
+        }
+
+        .navbar-brand {
+            color: var(--main-color) !important;
+        }
+
+        .nav-link {
+            color: var(--main-color) !important;
+        }
+    </style>
+
 </head>
 <body>
+
+    <section>
+
+        <div class="container">
+
+            <nav class="navbar navbar-expand-lg navbar-dark">
+
+                <div class="container-fluid">
+                    <svg width="40" height="40" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="600" height="600" fill="transparent" />
+                        <path d="M381.949 344.203C381.949 402.042 296.195 451.619 296.195 451.619C296.195 451.619 210.441 402.042 210.441 344.203C210.441 324.48 219.476 305.565 235.558 291.619C251.64 277.673 273.452 269.838 296.195 269.838C318.939 269.838 340.75 277.673 356.832 291.619C372.914 305.565 381.949 324.48 381.949 344.203Z" stroke="#f0b30f" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M296.195 368.992C311.982 368.992 324.78 357.894 324.78 344.203C324.78 330.513 311.982 319.415 296.195 319.415C280.408 319.415 267.61 330.513 267.61 344.203C267.61 357.894 280.408 368.992 296.195 368.992Z" stroke="#f0b30f" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" />
+                        <rect x="118.258" y="266.871" width="40.3548" height="242.129" rx="11" fill="#f0b30f" />
+                        <rect x="441.097" y="266.871" width="40.3548" height="242.129" rx="11" fill="#f0b30f" />
+                        <rect width="46.3603" height="291.222" rx="11" transform="matrix(0.534828 0.844961 -0.884806 0.465961 308.675 92)" fill="#f0b30f" />
+                        <rect width="46.3603" height="291.222" rx="11" transform="matrix(-0.534828 0.844961 -0.884806 -0.465961 548.71 227.699)" fill="#f0b30f" />
+                    </svg>
+
+
+                    <a class="navbar-brand" href="@Url.Action("Index", "Home", null)" style="font-weight: 400;">&nbsp;Super Salones</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+                            <li class="nav-item">
+                                @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Rentar", "lista", "Salones", null, new { @class = "nav-link" })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Propietarios", "Index", "Propietarios", null, new { @class = "nav-link" })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Clientes", "Index", "CLientes", null, new { @class = "nav-link" })
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+            </nav>
+
+            <!-- NavBar Ends-->
+
+           
+
+        </div>
+
+    </section>
+
 
     
 
 
-    <!-- NavBar Ends-->
 
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("SUPER SALONES", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
 
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Salones para rentar", "Lista", "Salones")</li>
-                    <li>@Html.ActionLink("Gestion de salones", "Index", "Salones")</li>
-                    <li>@Html.ActionLink("Propietarios", "Index", "Propietarios")</li>
-                    <li>@Html.ActionLink("Clientes", "Index", "Clientes")</li>
-
-                </ul>
-            </div>
-        </div>
+    <div class="container body-content">
+        @RenderBody()
     </div>
 
-         
 
-            <div class="container body-content">
-                @RenderBody()
-                <hr />
-                <footer>
-                    <p>&copy; @DateTime.Now.Year - SUPER SALONES</p>
-                </footer>
-            </div>
 
-           
-
-            @Scripts.Render("~/bundles/jquery")
-            @Scripts.Render("~/bundles/bootstrap")
-            @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -179,6 +179,7 @@
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <Content Include="Public\Icons\cliente.png" />
+    <Content Include="Public\Icons\LogoSuperCasa.svg" />
     <Content Include="Public\Icons\gerente.png" />
     <Content Include="Public\Icons\Salon.png" />
     <EntityDeploy Include="Model1.edmx">
