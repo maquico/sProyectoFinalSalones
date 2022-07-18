@@ -56,6 +56,10 @@
             font-size: 50px;
         }
 
+        #main-btn {
+            position: absolute;
+            top: 50%;
+        }
      
 
         
@@ -73,7 +77,7 @@
 
             <div class="middle">
                 <h1 class="text-white display-3">Te ayudamos a encontrar <span class="theme-text">el local de tus sueños.</span></h1>
-                <button class="btn btn-warning text-dark"> @Html.ActionLink("Encuentra tu local", "Lista", "Salones", null, new { @class = "btn" })</button>
+                <button class="btn btn-warning text-dark" id="main-btn"> @Html.ActionLink("Encuentra tu local", "Lista", "Salones", null, new { @class = "btn" })</button>
 
             </div>
             

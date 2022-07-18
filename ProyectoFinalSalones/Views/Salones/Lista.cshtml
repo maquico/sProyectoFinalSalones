@@ -7,107 +7,89 @@
     int numAlquilerCerrado = 0;
 }
 
-<h2>Index</h2>
 
 
-<table class="table">
+<head>
+   
+</head>
 
 
 <!--Viejo-->
-    @foreach (Salone salon in Model.salones)
-    {
-        coincidencias = 0;
-        numAlquilerCerrado = 0;
-        <tr>
-
-            @foreach (Transaccione transaccion in Model.transaccion)
-            {
-                if (transaccion.Salon_Id == salon.Id)
-                {
-                    coincidencias++;
-
-                    if (DateTime.Now > transaccion.FechaFin)
-                    {
-                        numAlquilerCerrado++;
-                    }
-                    if (DateTime.Now >= transaccion.FechaInicio && DateTime.Now <= transaccion.FechaFin)
-                    {
-                        salon.Disponibilidad = false;
-                    }
-                    else
-                    {
-                        if (DateTime.Now < transaccion.FechaInicio)
-                        {
-                            numAlquilerCerrado++;
-                        }
-                        salon.Disponibilidad = true;
-                    }
-                }
-
-            }
-            @if (coincidencias == numAlquilerCerrado)
-            {
-                salon.Disponibilidad = true;
-            }
-            else
-            {
-                salon.Disponibilidad = false;
-            }
-
-            <td>
-                <img src="~/Public/Icons/@(String.IsNullOrEmpty(salon.Imagen) ? "Salon.png" : salon.Imagen)" style="height:75px; width:75px" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => salon.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => salon.Direccion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => salon.Superficie)
-            </td>
-
-            @if (salon.Disponibilidad)
-            {
-                <td style="color:green">
-                    SALON LIBRE
-                </td>
-            }
-            else
-            {
-                <td style="color:red">
-                    SALON EN USO
-                </td>
-            }
-
-
-            <td>
-
-                @Html.ActionLink("Detalles", "DetallesLista", new { id = salon.Id }) |
-
-            </td>
-        </tr>
-    }
-
-</table>
-
-
-<!--Nuevo-->
 
 <div class="container">
     <div class="row">
         @foreach (Salone salon in Model.salones)
         {
+            coincidencias = 0;
+            numAlquilerCerrado = 0;
+
             <div class="col-md-3">
                 <div class="card">
-                    <img src="~/Public/Icons/@(String.IsNullOrEmpty(salon.Imagen) ? "salon.png" : salon.Imagen)" class="card-img-top" />
+                    <img src="~/Public/Icons/@(String.IsNullOrEmpty(salon.Imagen) ? "salon.png" : salon.Imagen)" class="card-img-top" style="width:250px; height:250px; margin: auto" />
                     <div class="card-body">
                         <h5 class="card-title">@Html.DisplayFor(modelItem => salon.Nombre)</h5>
-                        <p class="card-text">@Html.DisplayFor(modelItem => salon.Nombre) <br /> @Html.DisplayFor(modelItem => salon.Disponibilidad)</p>
+                        <p class="card-text">@Html.DisplayFor(modelItem => salon.Direccion)</p>
+
+
                         <h6 class="card-text">@Html.DisplayFor(modelItem => salon.Precio)</h6>
-                        <button style="border-color: transparent; background-color: transparent">
-                            @Html.ActionLink("Rentar", "DetallesLista", "DetallesLista", new { id = salon.Id, @class = "btn btn-primary" })
+
+                        <!-- Disponibilidad Inicio-->
+
+                        @foreach (Transaccione transaccion in Model.transaccion)
+                        {
+                            if (transaccion.Salon_Id == salon.Id)
+                            {
+                                coincidencias++;
+
+                                if (DateTime.Now > transaccion.FechaFin)
+                                {
+                                    numAlquilerCerrado++;
+                                }
+                                if (DateTime.Now >= transaccion.FechaInicio && DateTime.Now <= transaccion.FechaFin)
+                                {
+                                    salon.Disponibilidad = false;
+                                }
+                                else
+                                {
+                                    if (DateTime.Now < transaccion.FechaInicio)
+                                    {
+                                        numAlquilerCerrado++;
+                                    }
+                                    salon.Disponibilidad = true;
+                                }
+                            }
+
+                        }
+                        @if (coincidencias == numAlquilerCerrado)
+                        {
+                            salon.Disponibilidad = true;
+                        }
+                        else
+                        {
+                            salon.Disponibilidad = false;
+                        }
+
+
+
+                        @if (salon.Disponibilidad)
+                        {
+                            <h6 style="color:green">
+                                SALON LIBRE
+                            </h6>
+                        }
+                        else
+                        {
+                            <h6 style="color:red">
+                                SALON EN USO
+                            </h6>
+                        }
+
+                        <button class="btn btn-warning text-light">
+                            @Html.ActionLink("Detalles", "DetallesLista", "Salones", new { id = salon.Id, @class = "btn" }, null)
                         </button>
+
+                        <!-- Disponibilidad Final-->
+
 
                     </div>
                 </div>
@@ -115,9 +97,8 @@
             </div>
 
         }
+
     </div>
+
 </div>
 
-
-
-<!--Ejemplo-->
