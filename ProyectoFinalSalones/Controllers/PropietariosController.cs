@@ -12,7 +12,7 @@ namespace ProyectoFinalSalones.Controllers
 {
     public class PropietariosController : Controller
     {
-        private DS2_ProyectoFinalSalonesDBEntities2 db = new DS2_ProyectoFinalSalonesDBEntities2();
+        private DS2_ProyectoFinalSalonesDBEntities3 db = new DS2_ProyectoFinalSalonesDBEntities3();
 
         // GET: Propietarios
         public ActionResult Index()
@@ -50,6 +50,7 @@ namespace ProyectoFinalSalones.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 propietario.Id=Guid.NewGuid().ToString();
                 if (file != null)
                 {
@@ -91,6 +92,14 @@ namespace ProyectoFinalSalones.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (file == null)
+                {
+                    Propietario propietarioActual = db.Propietarios.AsNoTracking().FirstOrDefault(x => x.Id == propietario.Id);
+
+                    string imagenFinal = propietarioActual.Imagen;
+
+                    propietario.Imagen = imagenFinal;
+                }
                 if (file != null)
                 {
                     string imagenUrl = System.IO.Path.GetFileName(file.FileName);
@@ -99,7 +108,7 @@ namespace ProyectoFinalSalones.Controllers
 
                     propietario.Imagen = imagenUrl;
                 }
-                db.Entry(propietario).State = EntityState.Modified;
+                db.Entry(propietario).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

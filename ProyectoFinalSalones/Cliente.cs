@@ -17,7 +17,7 @@ namespace ProyectoFinalSalones
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Cliente()
         {
-            this.Salones = new HashSet<Salone>();
+            this.Transacciones = new HashSet<Transaccione>();
         }
     
         public string Id { get; set; }
@@ -27,6 +27,6 @@ namespace ProyectoFinalSalones
         public string Imagen { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Salone> Salones { get; set; }
+        public virtual ICollection<Transaccione> Transacciones { get; set; }
     }
 }

@@ -4,12 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="19f27d531de143f29f3427d6210d64a3" Name="Diagram1">
-        <EntityTypeShape EntityType="DS2_ProyectoFinalSalonesDBModel.Cliente" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DS2_ProyectoFinalSalonesDBModel.Propietario" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+      <Diagram DiagramId="dfb23552857b421bb24f2e21376eaa19" Name="Diagram1">
+        <EntityTypeShape EntityType="DS2_ProyectoFinalSalonesDBModel.Cliente" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DS2_ProyectoFinalSalonesDBModel.Propietario" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DS2_ProyectoFinalSalonesDBModel.Salone" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="DS2_ProyectoFinalSalonesDBModel.FK_Salones_Cliente" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DS2_ProyectoFinalSalonesDBModel.Transaccione" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="DS2_ProyectoFinalSalonesDBModel.FK_Transacciones_Cliente" ManuallyRouted="false" />
         <AssociationConnector Association="DS2_ProyectoFinalSalonesDBModel.FK_Salones_Propietario" ManuallyRouted="false" />
+        <AssociationConnector Association="DS2_ProyectoFinalSalonesDBModel.FK_Transacciones_Salones" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

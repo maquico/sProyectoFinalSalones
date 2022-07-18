@@ -1,79 +1,111 @@
-﻿@model IEnumerable<ProyectoFinalSalones.Salone>
+﻿@using ProyectoFinalSalones.Controllers
+@model ViewModel
 
 @{
-    ViewBag.Title = "Nuestros salones";
+    ViewBag.Title = "Index";
+    int coincidencias = 0;
+    int numAlquilerCerrado = 0;
 }
 
-<h2>Nuestros salones</h2>
+<h2>Index</h2>
+
 
 <table class="table">
+
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Imagen)
+            Imagen
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Nombre)
+            Nombre
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Disponibilidad)
+            Direccion
+        </th>
+        <th>
+            Superficie (m2)
+        </th>
+        <th>
+            Disponibilidad
         </th>
 
-        <th>
-           Inicio de alquiler actual
-        </th>
-        <th>
-           Final de alquiler actual
-        </th>
-        <th>
-           Cliente
-        </th>
-        <th>
-           Propietario
-        </th>
-       
+        <th></th>
     </tr>
 
-@foreach (var item in Model) {
-  
-    <tr>
-        @if (DateTime.Now >= item.InicioAlquilerActual && DateTime.Now <= item.FinAlquilerActual)
-        {
-        item.Disponibilidad = false;
-        }
-        else
-        {
-        item.Disponibilidad = true;
-        }
-        <td>
-            <img src="~/Public/Icons/@(String.IsNullOrEmpty(item.Imagen) ? "Salon.png" : item.Imagen)" style="height:75px; width:75px" />
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.Disponibilidad)
-        </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.InicioAlquilerActual)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FinAlquilerActual)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cliente.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Propietario.Nombre)
-        </td>
-      
-        <td>
+    @foreach (Salone salon in Model.salones)
+    {
+        coincidencias = 0;
+        numAlquilerCerrado = 0;
+        <tr>
 
-            @Html.ActionLink("Detalles", "DetallesRentar", new { id = item.Id })
+            @foreach (Transaccione transaccion in Model.transaccion)
+            {
+                if (transaccion.Salon_Id == salon.Id)
+                {
+                    coincidencias++;
 
-        </td>
-    </tr>
-}
+                    if (DateTime.Now > transaccion.FechaFin)
+                    {
+                        numAlquilerCerrado++;
+                    }
+                    if (DateTime.Now >= transaccion.FechaInicio && DateTime.Now <= transaccion.FechaFin)
+                    {
+                        salon.Disponibilidad = false;
+                    }
+                    else
+                    {
+                        if (DateTime.Now < transaccion.FechaInicio)
+                        {
+                            numAlquilerCerrado++;
+                        }
+                        salon.Disponibilidad = true;
+                    }
+                }
+
+            }
+            @if (coincidencias == numAlquilerCerrado)
+            {
+                salon.Disponibilidad = true;
+            }
+            else
+            {
+                salon.Disponibilidad = false;
+            }
+            <td>
+                <img src="~/Public/Icons/@(String.IsNullOrEmpty(salon.Imagen) ? "Salon.png" : salon.Imagen)" style="height:75px; width:75px" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => salon.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => salon.Direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => salon.Superficie)
+            </td>
+
+            @if (salon.Disponibilidad)
+            {
+                <td style="color:green">
+                    SALON LIBRE
+                </td>
+            }
+            else
+            {
+                <td style="color:red">
+                    SALON EN USO
+                </td>
+            }
+
+
+            <td>
+
+                @Html.ActionLink("Detalles", "DetallesLista", new { id = salon.Id }) |
+
+            </td>
+        </tr>
+    }
 
 </table>

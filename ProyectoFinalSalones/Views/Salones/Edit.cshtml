@@ -70,6 +70,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Imagen, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
+                <img src="~/Public/Icons/@(String.IsNullOrEmpty(Model.Imagen) ? "Salon.png" : Model.Imagen)" style="height:75px; width:75px" />
                 <input type="file" id="file" name="file" class="form-control" />
                 @Html.ValidationMessageFor(model => model.Imagen, "", new { @class = "text-danger" })
             </div>
@@ -80,14 +81,6 @@
             <div class="col-md-10">
                 @Html.DropDownList("Propietario_Id", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Propietario_Id, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Cliente_Id, "Cliente_Id", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Cliente_Id", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Cliente_Id, "", new { @class = "text-danger" })
             </div>
         </div>
 

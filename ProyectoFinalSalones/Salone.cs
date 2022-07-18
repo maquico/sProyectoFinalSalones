@@ -14,6 +14,12 @@ namespace ProyectoFinalSalones
     
     public partial class Salone
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Salone()
+        {
+            this.Transacciones = new HashSet<Transaccione>();
+        }
+    
         public string Id { get; set; }
         public string Nombre { get; set; }
         public int Superficie { get; set; }
@@ -23,11 +29,9 @@ namespace ProyectoFinalSalones
         public string Descripcion { get; set; }
         public string Imagen { get; set; }
         public string Propietario_Id { get; set; }
-        public Nullable<System.DateTime> InicioAlquilerActual { get; set; }
-        public Nullable<System.DateTime> FinAlquilerActual { get; set; }
-        public string Cliente_Id { get; set; }
     
-        public virtual Cliente Cliente { get; set; }
         public virtual Propietario Propietario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Transaccione> Transacciones { get; set; }
     }
 }

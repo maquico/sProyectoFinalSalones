@@ -1,12 +1,13 @@
 ﻿@model ProyectoFinalSalones.Salone
 
 @{
-    ViewBag.Title = "Detalles del salón";
+    ViewBag.Title = "DetallesLista";
 }
 
-<h2>Detalles del salón</h2>
+<h2>DetallesLista</h2>
 
 <div>
+    <h4>Salone</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -66,30 +67,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.InicioAlquilerActual)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.InicioAlquilerActual)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FinAlquilerActual)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FinAlquilerActual)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Cliente.Nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Cliente.Nombre)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.Propietario.Nombre)
         </dt>
 
@@ -100,19 +77,6 @@
     </dl>
 </div>
 <p>
-
-    @Html.ActionLink("Volver", "Lista")
-    @if (Model.Disponibilidad == true)
-    {
-        <p>
-            @Html.ActionLink("Rentar", "Rentar", new { id = Model.Id })
-        </p>
-    }
-    else
-    {
-        <p>
-            No disponible para renta
-        </p>
-    }
-
+    @Html.ActionLink("Rentar", "Create", "Transacciones", new { id = Model.Id }, null)
+    @Html.ActionLink("Back to List", "Index")
 </p>

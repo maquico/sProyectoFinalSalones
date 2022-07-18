@@ -55,6 +55,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -136,6 +137,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PropietariosController.cs" />
     <Compile Include="Controllers\SalonesController.cs" />
+    <Compile Include="Controllers\TransaccionesController.cs" />
+    <Compile Include="Controllers\ViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -159,6 +162,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Salone.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Transaccione.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -230,9 +236,13 @@
     <Content Include="Views\Clientes\Details.cshtml" />
     <Content Include="Views\Clientes\Edit.cshtml" />
     <Content Include="Views\Clientes\Index.cshtml" />
-    <Content Include="Views\Salones\Rentar.cshtml" />
     <Content Include="Views\Salones\Lista.cshtml" />
-    <Content Include="Views\Salones\DetallesRentar.cshtml" />
+    <Content Include="Views\Transacciones\Create.cshtml" />
+    <Content Include="Views\Transacciones\Delete.cshtml" />
+    <Content Include="Views\Transacciones\Details.cshtml" />
+    <Content Include="Views\Transacciones\Edit.cshtml" />
+    <Content Include="Views\Transacciones\Index.cshtml" />
+    <Content Include="Views\Salones\DetallesLista.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

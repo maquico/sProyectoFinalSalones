@@ -7,7 +7,7 @@
 <h2>Modificación de un propietario</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Propietarios", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -43,6 +43,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Imagen, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
+                <img src="~/Public/Icons/@(String.IsNullOrEmpty(Model.Imagen) ? "gerente.png" : Model.Imagen)" style="height:75px; width:75px" />
                 <input type="file" id="file" name="file" class="form-control" />
                 @Html.ValidationMessageFor(model => model.Imagen, "", new { @class = "text-danger" })
             </div>
