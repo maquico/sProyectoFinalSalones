@@ -12,28 +12,8 @@
 
 <table class="table">
 
-    <tr>
-        <th>
-            Imagen
-        </th>
-        <th>
-            Nombre
-        </th>
-        <th>
-            Direccion
-        </th>
-        <th>
-            Superficie (m2)
-        </th>
-        <th>
-            Disponibilidad
-        </th>
 
-        <th></th>
-    </tr>
-
-
-
+<!--Viejo-->
     @foreach (Salone salon in Model.salones)
     {
         coincidencias = 0;
@@ -73,6 +53,7 @@
             {
                 salon.Disponibilidad = false;
             }
+
             <td>
                 <img src="~/Public/Icons/@(String.IsNullOrEmpty(salon.Imagen) ? "Salon.png" : salon.Imagen)" style="height:75px; width:75px" />
             </td>
@@ -109,3 +90,34 @@
     }
 
 </table>
+
+
+<!--Nuevo-->
+
+<div class="container">
+    <div class="row">
+        @foreach (Salone salon in Model.salones)
+        {
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="~/Public/Icons/@(String.IsNullOrEmpty(salon.Imagen) ? "salon.png" : salon.Imagen)" class="card-img-top" />
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => salon.Nombre)</h5>
+                        <p class="card-text">@Html.DisplayFor(modelItem => salon.Nombre) <br /> @Html.DisplayFor(modelItem => salon.Disponibilidad)</p>
+                        <h6 class="card-text">@Html.DisplayFor(modelItem => salon.Precio)</h6>
+                        <button style="border-color: transparent; background-color: transparent">
+                            @Html.ActionLink("Rentar", "DetallesLista", "DetallesLista", new { id = salon.Id, @class = "btn btn-primary" })
+                        </button>
+
+                    </div>
+                </div>
+
+            </div>
+
+        }
+    </div>
+</div>
+
+
+
+<!--Ejemplo-->
