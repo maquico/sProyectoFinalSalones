@@ -41,9 +41,12 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Imagen, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
+                Imagen actual
+                <br />
                 <img src="~/Public/Icons/@(String.IsNullOrEmpty(Model.Imagen) ? "cliente.png" : Model.Imagen)" style="height:75px; width:75px" />
+                <br />
+                Nueva imagen
                 <input type="file" id="file" name="file" class="form-control" />
                 @Html.ValidationMessageFor(model => model.Imagen, "", new { @class = "text-danger" })
             </div>
@@ -51,7 +54,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Guardar" class="btn btn-default" />
             </div>
         </div>
     </div>
