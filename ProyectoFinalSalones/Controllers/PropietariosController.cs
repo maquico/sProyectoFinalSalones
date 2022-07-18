@@ -135,10 +135,28 @@ namespace ProyectoFinalSalones.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
+            
             Propietario propietario = db.Propietarios.Find(id);
             db.Propietarios.Remove(propietario);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            bool error = false;
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                error = true;
+               
+            }
+            if (error)
+            {
+                return RedirectToAction("Error", "Salones");
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+            
         }
 
         protected override void Dispose(bool disposing)

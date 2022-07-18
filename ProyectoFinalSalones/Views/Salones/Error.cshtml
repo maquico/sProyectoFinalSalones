@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Error";
+}
+
+<h2 style="color:red">Error</h2>
+
+<p>
+    Ha ocurrido un error en el sistema <br />
+    Las posibles causas son: <br />
+    1) Intentaste borrar un registro que tiene referencias a otro registro. <br />
+    Por ejemplo, un propietario que tiene salones creados.
+</p>
+
+@Html.ActionLink("Volver", "Index", "Home")
+

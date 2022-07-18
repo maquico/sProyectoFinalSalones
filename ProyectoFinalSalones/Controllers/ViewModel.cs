@@ -9,5 +9,7 @@ namespace ProyectoFinalSalones.Controllers
     {
         public IEnumerable<Salone> salones { get; set; }
         public IEnumerable<Transaccione> transaccion { get; set; }
+        public Transaccione objetoTransaccion { get; set; }
+        public Salone objetoSalone { get; set; }
     }
 }

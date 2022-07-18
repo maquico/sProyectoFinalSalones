@@ -217,7 +217,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Salones\Create.cshtml" />
-    <Content Include="Views\Salones\Delete.cshtml" />
     <Content Include="Views\Salones\Details.cshtml" />
     <Content Include="Views\Salones\Edit.cshtml" />
     <Content Include="Views\Salones\Index.cshtml" />
@@ -238,6 +237,8 @@
     <Content Include="Views\Transacciones\Edit.cshtml" />
     <Content Include="Views\Transacciones\Index.cshtml" />
     <Content Include="Views\Salones\DetallesLista.cshtml" />
+    <Content Include="Views\Salones\Error.cshtml" />
+    <Content Include="Views\Salones\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

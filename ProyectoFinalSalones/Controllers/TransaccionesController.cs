@@ -39,18 +39,25 @@ namespace ProyectoFinalSalones.Controllers
         // GET: Transacciones/Create
         public ActionResult Create(string id)
         {
-            if (id == null)
+            ViewModel viewModel = new ViewModel();
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                viewModel.objetoSalone = db.Salones.Find(id);
+                viewModel.salones = db.Salones.AsEnumerable();
+                viewModel.transaccion = db.Transacciones.AsEnumerable();
+                Transaccione transaccion = new Transaccione();
+                viewModel.objetoTransaccion = transaccion;
+                if (viewModel.objetoSalone == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.Cliente_Id = new SelectList(db.Clientes, "Id", "Nombre", viewModel.objetoTransaccion.Cliente_Id);
             }
-            Salone salones = db.Salones.Find(id);
-            Transaccione transaccion = new Transaccione();
-            if (salones == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.Cliente_Id = new SelectList(db.Clientes, "Id", "Nombre", transaccion.Cliente_Id);
-            return View(transaccion);
+           
+            return View(viewModel);
         }
 
         // POST: Transacciones/Create
@@ -58,14 +65,16 @@ namespace ProyectoFinalSalones.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FechaInicio,FechaFin,Cliente_Id,Salon_Id")] Transaccione transaccione, string id)
+        public ActionResult Create([Bind(Include = "Id,FechaInicio,FechaFin,Cliente_Id,Salon_Id")] Transaccione transaccion1, ViewModel viewModel, string id)
         {
             bool choque = false;
-            ViewModel viewModel = new ViewModel();
+            viewModel.objetoTransaccion = transaccion1;
+            viewModel.objetoTransaccion.FechaInicio = viewModel.objetoTransaccion.FechaInicio.ToLocalTime();
+            viewModel.objetoTransaccion.FechaFin = viewModel.objetoTransaccion.FechaFin.ToLocalTime();
             viewModel.transaccion = db.Transacciones.AsNoTracking().AsEnumerable();
-            foreach (var item in viewModel.transaccion)
+            foreach (Transaccione transaccion in viewModel.transaccion)
             {
-                if ((transaccione.FechaInicio >= item.FechaInicio && transaccione.FechaInicio <= item.FechaFin) || (transaccione.FechaFin >= item.FechaInicio && transaccione.FechaFin <= item.FechaFin))
+                if ((viewModel.objetoTransaccion.FechaInicio >= transaccion.FechaInicio && viewModel.objetoTransaccion.FechaInicio <= transaccion.FechaFin) || (viewModel.objetoTransaccion.FechaFin >= transaccion.FechaInicio && viewModel.objetoTransaccion.FechaFin <= transaccion.FechaFin))
                 {
                     choque = true;
                     return RedirectToAction("Lista","Salones");
@@ -74,16 +83,16 @@ namespace ProyectoFinalSalones.Controllers
             }
             if (ModelState.IsValid && choque == false)
             {
-                transaccione.Salon_Id = id;
-                transaccione.Id = Guid.NewGuid().ToString();
-                db.Transacciones.Add(transaccione);
+                viewModel.objetoTransaccion.Salon_Id = id;
+                viewModel.objetoTransaccion.Id = Guid.NewGuid().ToString();
+                db.Transacciones.Add(viewModel.objetoTransaccion);
                 db.SaveChanges();
 
                 return RedirectToAction("Lista", "Salones");
             }
-            ViewBag.Cliente_Id = new SelectList(db.Clientes, "Id", "Nombre", transaccione.Cliente_Id);
-            ViewBag.Salon_Id = new SelectList(db.Salones, "Id", "Nombre", transaccione.Salon_Id);
-            return View(transaccione);
+            ViewBag.Cliente_Id = new SelectList(db.Clientes, "Id", "Nombre", viewModel.objetoTransaccion.Cliente_Id);
+            ViewBag.Salon_Id = new SelectList(db.Salones, "Id", "Nombre", viewModel.objetoTransaccion.Salon_Id);
+            return View(viewModel);
 
         }
 
@@ -144,8 +153,25 @@ namespace ProyectoFinalSalones.Controllers
         {
             Transaccione transaccione = db.Transacciones.Find(id);
             db.Transacciones.Remove(transaccione);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            bool error = false;
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                error = true;
+
+            }
+            if (error)
+            {
+                return RedirectToAction("Error", "Salones");
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+            
         }
 
         protected override void Dispose(bool disposing)

@@ -25,6 +25,11 @@ namespace ProyectoFinalSalones.Controllers
             return View(db.Salones.ToList());
         }
 
+        public ActionResult Error()
+        {
+            return View();
+        }
+
         public ActionResult Lista()
         {
             var viewModel = new ViewModel();
@@ -177,6 +182,7 @@ namespace ProyectoFinalSalones.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Propietario_Id = new SelectList(db.Propietarios, "Id", "Nombre", salone.Propietario_Id);
             return View(salone);
         }
 
@@ -187,8 +193,25 @@ namespace ProyectoFinalSalones.Controllers
         {
             Salone salone = db.Salones.Find(id);
             db.Salones.Remove(salone);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            bool error = false;
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                error = true;
+
+            }
+            if (error)
+            {
+                return RedirectToAction("Error", "Salones");
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+            
         }
 
         protected override void Dispose(bool disposing)

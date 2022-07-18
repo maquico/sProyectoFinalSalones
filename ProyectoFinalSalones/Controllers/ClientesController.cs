@@ -137,8 +137,25 @@ namespace ProyectoFinalSalones.Controllers
         {
             Cliente cliente = db.Clientes.Find(id);
             db.Clientes.Remove(cliente);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            bool error = false;
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                error = true;
+
+            }
+            if (error)
+            {
+                return RedirectToAction("Error", "Salones");
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+            
         }
 
         protected override void Dispose(bool disposing)
