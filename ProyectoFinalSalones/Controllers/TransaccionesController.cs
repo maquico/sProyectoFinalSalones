@@ -60,18 +60,31 @@ namespace ProyectoFinalSalones.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,FechaInicio,FechaFin,Cliente_Id,Salon_Id")] Transaccione transaccione, string id)
         {
-            if (ModelState.IsValid)
+            bool choque = false;
+            ViewModel viewModel = new ViewModel();
+            viewModel.transaccion = db.Transacciones.AsNoTracking().AsEnumerable();
+            foreach (var item in viewModel.transaccion)
+            {
+                if ((transaccione.FechaInicio >= item.FechaInicio && transaccione.FechaInicio <= item.FechaFin) || (transaccione.FechaFin >= item.FechaInicio && transaccione.FechaFin <= item.FechaFin))
+                {
+                    choque = true;
+                    return RedirectToAction("Lista","Salones");
+                    
+                }
+            }
+            if (ModelState.IsValid && choque == false)
             {
                 transaccione.Salon_Id = id;
                 transaccione.Id = Guid.NewGuid().ToString();
                 db.Transacciones.Add(transaccione);
                 db.SaveChanges();
+
                 return RedirectToAction("Lista", "Salones");
             }
-
             ViewBag.Cliente_Id = new SelectList(db.Clientes, "Id", "Nombre", transaccione.Cliente_Id);
             ViewBag.Salon_Id = new SelectList(db.Salones, "Id", "Nombre", transaccione.Salon_Id);
             return View(transaccione);
+
         }
 
         // GET: Transacciones/Edit/5
