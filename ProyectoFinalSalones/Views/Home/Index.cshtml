@@ -4,36 +4,98 @@
 
 <head>
 
+    <style>
+
+        .theme-text{
+            color: var(--main-color)
+        }
+
+        .header {
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+            width: 100%;
+            height: 100vh;
+            background-position: center;
+            background-size: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: -1;
+        }
+
+        .middle-container {
+            position: absolute;
+            top: 100vh;
+        }
+
+        .middle {
+            height: 80vh;
+            width: 70%;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+        }
+
+        .middle h1 
+        {
+            font-size: 60px;
+            font-weight: 500;
+
+
+        }
+
+        .wave {
+            position: absolute;
+            bottom: 0px;
+        }
+
+
+
+    </style>
 
 </head>
 
-<div class="header">
+<body>
 
-    <div class="middle">
-        <h1>Te ayudamos a encontrar el local de tus sueños.</h1>
+    <section class="header">
+
+        <div class="container">
+
+            <div class="middle">
+                <h1 class="text-white display-3">Te ayudamos a encontrar <spanv class="theme-text">el local de tus sueños.</spanv></h1>
+            </div>
+
+
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" class="wave" viewBox="0 0 1440 320"><path fill="#fff" fill-opacity="1" d="M0,288L48,261.3C96,235,192,181,288,160C384,139,480,149,576,165.3C672,181,768,203,864,213.3C960,224,1056,224,1152,202.7C1248,181,1344,139,1392,117.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+
+    </section>
+
+    <div class="middle-container">
+        <p class="lead">
+            En SUPER SALONES podrás encontrar todo tipo de salones de tu interes, con todos los tamaños, colores y temáticas que puedas imaginar.
+        </p>
+        <p><a href="~/Salones/Lista" class="btn btn-primary btn-lg">Haz click aquí para rentar algún salón &raquo;</a></p>
+
+
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Únete como cliente!</h2>
+                <p>Al formar parte de nuestros clientes serás capaz de rentar los salones que tenemos disponibles para ti. </p>
+                <p><a class="btn btn-default" href="~/Clientes/Create">¿Qué esperas para unirte? &raquo;</a></p>
+            </div>
+            <div class="col-md-4">
+                <h2>Únete como propietario!</h2>
+                <p>Al formar parte de nuestros propietarios serás capaz de registrar y modificar salones a tu nombre para que estos puedan ser rentados por nuestros clientes. </p>
+                <p><a class="btn btn-default" href="~/Propietarios/Create">¿Qué esperas para unirte? &raquo;</a></p>
+            </div>
+            <div class="col-md-4">
+                <h2>Registra un nuevo salon!</h2>
+                <p> ¿Ya eres propietario? Registra tus salones para que nuestros clientes tengan acceso a poder rentarlo. Coloca todos los detalles que consideres necesarios! </p>
+                <p><a class="btn btn-default" href="~/Salones/Create">Empieza aquí &raquo;</a></p>
+            </div>
+        </div>
+
     </div>
 
-
-    <p class="lead">
-        En SUPER SALONES podrás encontrar todo tipo de salones de tu interes, con todos los tamaños, colores y temáticas que puedas imaginar.
-    </p>
-    <p><a href="~/Salones/Lista" class="btn btn-primary btn-lg">Haz click aquí para rentar algún salón &raquo;</a></p>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Únete como cliente!</h2>
-        <p>Al formar parte de nuestros clientes serás capaz de rentar los salones que tenemos disponibles para ti. </p>
-        <p><a class="btn btn-default" href="~/Clientes/Create">¿Qué esperas para unirte? &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Únete como propietario!</h2>
-        <p>Al formar parte de nuestros propietarios serás capaz de registrar y modificar salones a tu nombre para que estos puedan ser rentados por nuestros clientes. </p>
-        <p><a class="btn btn-default" href="~/Propietarios/Create">¿Qué esperas para unirte? &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Registra un nuevo salon!</h2>
-        <p> ¿Ya eres propietario? Registra tus salones para que nuestros clientes tengan acceso a poder rentarlo. Coloca todos los detalles que consideres necesarios! </p>
-        <p><a class="btn btn-default" href="~/Salones/Create">Empieza aquí &raquo;</a></p>
-    </div>
-</div>
+</body>
